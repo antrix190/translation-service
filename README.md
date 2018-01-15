@@ -4,7 +4,7 @@
 
 How to use this repository?
 
-- Step 1 : Fork this repository.
+- Step 1 : Clone this repository.
 - Step 2 : mvn clean install
 - Step 3 : java -jar target/translate-service-0.0.1-SNAPSHOT.jar 
 
