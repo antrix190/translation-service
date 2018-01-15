@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="INFO">
+    <Properties>
+        <Property name="log-path">logs</Property>
+        <Property name="app-name">microservice-framework</Property>
+    </Properties>
+    
+    <Appenders>
+        <Console name="console-log" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        </Console>
+        <RollingFile name="trace-log" fileName="${log-path}/${app-name}.log"
+                     filePattern="${log-path}/${app-name}-%d{yyyy-MM-dd}.log.gz">
+            <PatternLayout>
+                <pattern>%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n</pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+				<SizeBasedTriggeringPolicy size="1 GB" />
+            </Policies>
+        </RollingFile>
+        <RollingFile name="error-log" fileName="${log-path}/${app-name}.log"
+                     filePattern="${log-path}/${app-name}.log">
+            <PatternLayout>
+                <pattern>%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n</pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+				<SizeBasedTriggeringPolicy size="1 GB" />
+            </Policies>
+        </RollingFile>
+    </Appenders>
+    <Loggers>
+	    <Logger name="org.springframework.core" level="info"></Logger>	
+		
+		<Logger name="org.springframework.beans" level="info"></Logger>
+		
+		<Logger name="org.springframework.context" level="info"></Logger>
+		
+		<Logger name="org.springframework.web" level="debug" additivity="false">
+			<appender-ref ref="trace-log" level="debug"/>
+            <appender-ref ref="error-log" level="error"/>
+		</Logger>
+		
+		<Logger name="org.springframework.http" level="debug" additivity="false">
+			<appender-ref ref="trace-log" level="debug"/>
+            <appender-ref ref="error-log" level="error"/>
+		</Logger>
+		
+        <Root level="info" additivity="false">
+            <AppenderRef ref="console-log"/>
+        </Root>
+    </Loggers>
+</Configuration>
