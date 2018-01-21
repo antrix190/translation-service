@@ -14,9 +14,9 @@ Key Instructions :
 	eg : Java -jar target/translate-service-0.0.1-SNAPSHOT.jar -Dserver.port=8989, to run the application at 8989 port.
 - API key for Yandex Translate API can be changed in application.properties as well.
 - Migrate to `/swagger-ui.html` to get the API documentation.
+- Create a Yandex translation API Key from here, tech.yandex.com/translate.
 
-Implementation:
-- translate-service caches (currently in-memory) the requests made to Yandex Translate API each time. This can be changed in future to support distributed caching.
-- translate-service asynchronously makes requests for other languages also with the same text. This is driven by an external json file, which has mapping such as `"es":["el","it"]` in a resource file,`Language-mapping.json`
-- The project implements Metrics for reporting. Since we are making requests to Third Party Service we would want to monitor if the requests are not too high and hence counter `yandex.requests` keeps the count for the number of requests.
-- ThirdPartyService is loosely coupled as it is separately implemented as a service keeping in mind the future requirements that may arise if we want to change the service provider. 
+How to Contribute :
+1. Fork the repository. 
+2. Create issues 
+3. Create Pull Request.
