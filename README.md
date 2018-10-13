@@ -16,6 +16,19 @@ Key Instructions :
 - Migrate to `/swagger-ui.html` to get the API documentation.
 - Create a Yandex translation API Key from here, tech.yandex.com/translate.
 
+Contribute & Support!
+
+Contributions are welcome! You can contribute by
+
+- starring this repo!
+- requesting or adding new features.
+- enhancing existing code: ex.: provide more accurate description cases
+- testing
+- enhancing documentation
+- bringing suggestions and reporting bugs
+- spreading the word / telling us how you use it!
+- Adding examples.
+
 How to Contribute :
 1. Fork the repository. 
 2. Create issues 
