@@ -1,26 +1,26 @@
 package com.translate.service.impl;
 
-import java.util.concurrent.Future;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.ResponseEntity;
-import org.springframework.scheduling.annotation.Async;
-import org.springframework.scheduling.annotation.AsyncResult;
-import org.springframework.scheduling.annotation.EnableAsync;
-import org.springframework.stereotype.Component;
-import org.springframework.web.client.RestTemplate;
-import org.springframework.cache.annotation.Cacheable;
-import org.springframework.context.annotation.Configuration;
-
 import com.codahale.metrics.Counter;
 import com.codahale.metrics.MetricRegistry;
 import com.translate.constant.Constants;
 import com.translate.service.YandexService;
 import com.translate.yandex.entity.SupportedLang;
 import com.translate.yandex.entity.Translation;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.AsyncResult;
+import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.stereotype.Component;
+import org.springframework.web.client.RestTemplate;
+
+import java.util.concurrent.Future;
 
 @Component
 @Configuration
@@ -48,7 +48,6 @@ public class YandexServiceImpl implements YandexService {
 			)
 	@Async
 	public Future<ResponseEntity<Translation>> getTranslation(String text, String lang) {
-		// TODO Auto-generated method stub
 		logger.info("Text {}, Lang {}",text,lang);
 		Counter thirdPartyRequests = registry.counter("yandex.requests");
 		StringBuilder url = new StringBuilder(baseUrl);
@@ -64,7 +63,6 @@ public class YandexServiceImpl implements YandexService {
 	@Override
 	@Cacheable(value="supportedLangCache")
 	public ResponseEntity<SupportedLang> getSupportedLang() {
-		// TODO Auto-generated method stub
 		StringBuilder url = new StringBuilder(baseUrl);
 		url.append(Constants.GET_LANGS_URL);
 		url.append(Constants.KEY).append(Constants.EQUAL_SIGN).append(apiKey);

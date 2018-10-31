@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.translate.entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
